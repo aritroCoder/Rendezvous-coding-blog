@@ -1,0 +1,54 @@
+<input id="inputFileToLoad" type="file" onchange="encodeImageFileAsURL();" />
+<div id="imgTest"></div>
+<script type="text/javascript">
+  document
+    .getElementById("inputFileToLoad")
+    .addEventListener("onchange", encodeImageFileAsURL());
+  function encodeImageFileAsURL() {
+    var filesSelected = document.getElementById("inputFileToLoad").files;
+    if (filesSelected.length > 0) {
+      var fileToLoad = filesSelected[0];
+
+      var fileReader = new FileReader();
+
+      fileReader.onload = function (fileLoadedEvent) {
+        var srcData = fileLoadedEvent.target.result; // <--- data: base64
+
+        var newImage = document.createElement("img");
+        newImage.src = srcData;
+
+        document.getElementById("imgTest").innerHTML = newImage.outerHTML;
+        alert(
+          "Converted Base64 version is " +
+            document.getElementById("imgTest").innerHTML
+        );
+        console.log(
+          "Converted Base64 version is " +
+            document.getElementById("imgTest").innerHTML
+        );
+
+        var body = {
+          title: "Image testing post",
+          body: "Sample body for this post",
+          image: srcData,
+        };
+
+        let response = fetch("http://localhost:8080/api/post/create", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+            authtoken:
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkpvaG5Eb2UiLCJlbWFpbCI6IkRvZUpvaG5AZ21haWwuY29tIiwiaWF0IjoxNjQ4NjU0NDQ2fQ.9QdivBL63M7UiqDRyxrJZhZ4gvpRFPY2TORU3MhZaYI",
+          },
+          body: JSON.stringify(body),
+        }).then((response) => {
+            // console.log(respose);
+          const json = response.json().then((json) => {
+            console.log(json);
+          });
+        });
+      };
+      fileReader.readAsDataURL(fileToLoad);
+    }
+  }
+</script>
