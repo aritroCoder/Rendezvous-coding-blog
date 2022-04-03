@@ -4,7 +4,7 @@ Clone the entire repo, move to the rendezvous_backend-master folder and open ter
 and type the following lines of code: (You need to use your own mongoDB connection string for this purpose) <br>
 <pre>
 PORT = 8080
-MONGODB= <write your own connection string here within '' >
+MONGODB= [write your own connection string here within '' ]
 SECRET_KEY= '38fa8f0e14afd15947d9c8ae6d0c77dc8ef6e113ac20d9a6d2d1c68c208d736a'
 </pre>
 After this, open terminal and type `node index`, and the server should start. <br>
