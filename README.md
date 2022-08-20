@@ -1,5 +1,5 @@
 # Celesta-Rendezvous
-This project was created for submission to the celesta-hack-it-out hackathon 
+This project was created for submission to the celesta-hack-it-out hackathon. <br>
 Check the working website here: https://celesta2022rendezvous.herokuapp.com
 ## Backend Setup
 Clone the entire repo, move to the rendezvous_backend-master folder and open terminal, then type `npm i` <br> create a file called .env in rendezvous_backend-master folder
